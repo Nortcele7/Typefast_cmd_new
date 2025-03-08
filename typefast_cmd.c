@@ -139,10 +139,6 @@ int main()
                     generateRandomText(2, numWords, result);
                     startTypingTest(result, user_index);
                     break;
-                // case 5: // Lessons option
-                //     generateRandomText(LESSONS, numWords, result);
-                //     startTypingTest(result, user_index);
-                //     break;
                 case 5:
                     int option_lessons = menu_navigation(OptionsLessons, sizeof(OptionsLessons) / sizeof(OptionsLessons[0]));
                     
@@ -462,84 +458,6 @@ int menu_navigation(char *options[], int size)
     }
 }
 
-// void generateRandomText(Mode mode, int numWords, char *result)
-// {
-//     FILE *file;
-//     char words[MAX_WORDS][WORD_LENGTH];
-//     char quotes[MAX_QUOTES][MAX_TEXT_LENGTH];
-//     char paragraphs[MAX_PARAGRAPHS][MAX_TEXT_LENGTH];
-//     char lessons[MAX_LESSONS][MAX_TEXT_LENGTH]
-//     int count = 0;
-
-//     switch (mode)
-//     {
-//     case WORDS:
-//         file = fopen("words.txt", "r");
-//         break;
-//     case QUOTES:
-//         file = fopen("quotes.txt", "r");
-//         break;
-//     case PARAGRAPHS:
-//         file = fopen("para.txt", "r");
-//         break;
-//     case LESSONS:
-//         file = fopen("lessons.txt","r");
-//     default:
-//         printf("Invalid mode!\n");
-//         return;
-//     }
-
-//     if (!file)
-//     {
-//         printf("Error opening file.\n");
-//         return;
-//     }
-
-//     if (mode == WORDS)
-//     {
-//         while (count < MAX_WORDS && fscanf(file, "%49s", words[count]) == 1)
-//         {
-//             count++;
-//         }
-//     }
-//     else
-//     {
-//         while (count < (mode == QUOTES ? MAX_QUOTES : MAX_PARAGRAPHS) && fgets(mode == QUOTES ? quotes[count] : paragraphs[count], MAX_TEXT_LENGTH, file))
-//         {
-//             count++;
-//         }
-//     }
-
-//     fclose(file);
-
-//     if (count == 0)
-//     {
-//         printf("No data found in file.\n");
-//         return;
-//     }
-
-//     srand(time(NULL));
-//     result[0] = '\0';
-
-//     if (mode == WORDS)
-//     {
-//         for (int i = 0; i < numWords; i++)
-//         {
-//             int randIndex = rand() % count;
-//             strcat(result, words[randIndex]);
-//             if (i < numWords - 1)
-//             {
-//                 strcat(result, " ");
-//             }
-//         }
-//     }
-//     else
-//     {
-//         int randIndex = rand() % count;
-//         strcat(result, mode == QUOTES ? quotes[randIndex] : paragraphs[randIndex]);
-//     }
-// }
-
 void generateRandomText(Mode mode, int numWords, char *result)
 {
     FILE *file;
@@ -613,6 +531,7 @@ void generateRandomText(Mode mode, int numWords, char *result)
         printf("No data found in file.\n");
         return;
     }
+    
 
     srand(time(NULL));
     result[0] = '\0';
@@ -993,7 +912,6 @@ void showTimer(int timeLeft)
 
         // Restore the cursor to the typing area
         SetConsoleCursorPosition(hConsole, cursorPos);
-
 
         lastTimeLeft = timeLeft;
     }
