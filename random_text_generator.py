@@ -1,19 +1,18 @@
-import random  
+import random
+import string
 
-# Beginner Drills (Level 1)  
-home_row = ['f', 'j', 'd', 'k', 's', 'l', 'a', ';']  
-def generate_beginner_line():  
-    drills = [  
-        'fjfj jfjf ffjj jjff ffjj fjfj fffj jjjf ffjf jjff',  
-        'dfjk jkdf djdj kfkf fkfk jdjd kjfd kjfd jkdf fdkj',  
-        'sldk lskd slsl lsls klds lskd llks dksl lksd lkds',
-        'a;a; asdf ;lkj a;s; ;;;a a;;; ;a;a fdsa lkja lkds',  
-        ' '.join([''.join(random.choices(home_row, k=4)) for _ in range(10)]) 
-    ]  
-    return random.choice(drills)  
+# Function to generate a random word with symbols and numbers
+def generate_word():
+    length = random.randint(4, 8)  # Word length between 4 and 8 characters
+    word = ''.join(random.choices(string.ascii_letters + string.digits + string.punctuation, k=length))
+    return word
 
-with open('Level1_Beginner_Drills.txt', 'w') as f:  
-    for _ in range(1000):  
-        f.write(generate_beginner_line() + '\n')  
+# Generate 1000 lines, each with 10 random words
+file_path_symbols = "symbols_numbers_text_file.txt"
 
-# Repeat similar logic for Intermediate/Advanced levels  
+with open(file_path_symbols, "w") as file:
+    for _ in range(1000):
+        words = [generate_word() for _ in range(10)]
+        file.write(" ".join(words) + "\n")
+
+file_path_symbols
